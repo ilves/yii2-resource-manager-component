@@ -42,6 +42,10 @@ class AmazonS3ResourceManager extends Component implements ResourceManagerInterf
 	 * @var \Aws\S3\S3Client
 	 */
 	private $_client;
+	/**
+	 * @var string Scheme
+	 */
+	public $scheme = 'https';
 
 	/**
 	 * @inheritdoc
@@ -170,7 +174,8 @@ class AmazonS3ResourceManager extends Component implements ResourceManagerInterf
 		if ($this->_client === null) {
 			$this->_client = S3Client::factory([
 				'key' => $this->key,
-				'secret' => $this->secret
+				'secret' => $this->secret,
+				'scheme' => $this->scheme
 			]);
 		}
 		return $this->_client;
